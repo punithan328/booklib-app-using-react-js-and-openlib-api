@@ -1,7 +1,24 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { useCallback } from 'react';
-const URL = "http://openlibrary.org/search.json?title=";
+
+
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Auth from "./pages/Login/Auth"
+const URL = "https://openlibrary.org/search.json?title=";
 const AppContext = React.createContext();
+
+
+
+function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/auth" element={<Auth />} />
+        </Routes>
+      </BrowserRouter>
+    )
+  }
+  
 
 const AppProvider = ({children}) => {
     const [searchTerm, setSearchTerm] = useState("the lost world");
@@ -65,4 +82,4 @@ export const useGlobalContext = () => {
     return useContext(AppContext);
 }
 
-export {AppContext, AppProvider};
+export {AppContext, AppProvider,App};
